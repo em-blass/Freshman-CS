@@ -1,0 +1,67 @@
+/* 
+	195
+	contactInfo - Create DB and Tables Assignment
+    Emmet Blassingame
+*/
+
+drop database if exists contactInfo;
+create database contactInfo;
+
+use contactInfo;
+drop table if exists customersAndProducts;
+
+create table friends (
+	friendId int primary key,
+    friendName varchar(20));
+
+insert into friends
+values (1, 'Mike Lopez');
+insert into friends
+values (2, 'Gary Hudson');
+insert into friends
+values (3, 'Bruce Bradley');
+insert into friends
+values (4, 'Barbara Johnson');
+select * from friends;
+
+create table emails (
+	emailId int primary key,
+    friendId int,
+    email varchar(50));
+
+insert into emails
+values (1, 2, 'garyhudson@oldfriends.com');
+insert into emails
+values (2, 1, 'mikelopez@oldfriends.com');
+insert into emails
+values (3, 2, 'garyhudson@hudsonlaw.com');
+insert into emails
+values (4, 4, 'nashvillebabs@aol.com');
+insert into emails
+values (5, 4, 'seniorpartner1@hudsonlaw.com');
+insert into emails
+values (6, 3, 'bruce@powerstart.com');
+insert into emails
+values (7, 2, 'ftlgary@punxhotany.com');
+select * from emails;
+
+create table phones (
+	phoneId int primary key,
+    friendId int,
+    phone varchar(15));
+
+insert into phones
+values (1, 2, '123-123-1234');
+insert into phones
+values (2, 2, '123-111-1111');
+insert into phones
+values (3, 1, '111-222-1111');
+insert into phones
+values (4, 4, '123-111-1111');
+insert into phones
+values (5, 3, '321-321-3211');
+insert into phones
+values (6, 3, '456-111-1111');
+insert into phones
+values (7, 4, '909-808-1111');
+select * from phones;
