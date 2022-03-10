@@ -1,0 +1,46 @@
+/*
+    191
+    Loop Practice 2
+    main4-2.cpp
+    Emmet Blassingame
+*/
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+
+    //Loop 1
+
+    float sum = 0, count = 0;
+    int i, minVal = 100, maxVal = 0;
+    cout << "Loop 1" << endl;
+
+    while (true)
+    {
+        cout << "Enter a number: ";
+        cin >> i;
+
+        if (sum > 100 || i == 0)
+        {
+            break;
+        }
+        else if (i > 0)
+        {
+            sum = sum + i;
+            count++;
+        }
+
+        if (i <= minVal) minVal = i;
+        if (i >= maxVal) maxVal = i;
+
+    }
+
+    cout << "Maximum Value: " << maxVal << endl;
+    cout << "Minimum Value: " << minVal << endl;
+    cout << "Average Value: " << fixed << setprecision(1) << sum / count << endl;
+    return 0;
+
+}
