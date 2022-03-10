@@ -1,0 +1,75 @@
+/*
+    191
+    Function Practice
+    main5-3.cpp
+    Emmet Blassingame
+*/
+
+#include<iostream>
+using namespace std;
+
+int maxIntVal(int x, int y) {
+    //returns the largest of x and y
+    if (x > y) {
+        return x;
+    }
+    else if (x < y) {
+        return y;
+    }
+}
+
+int sumN(int n) {
+    //returns the sum of the integers from 1 to n; assume n >= 0
+    if (n >= 0) {
+        int sum = n * (n + 1) / 2;
+        return sum;
+    }
+}
+
+bool isEven(int n) {
+    //returns true if n is an even number, false otherwise
+    if (n % 2 == 0)
+        return true; //returns 1
+    else
+        return false; //returns 0
+}
+
+string fixCaps(string s) {
+    //returns the string with the first letter capitalized and the rest of the
+    //letters lowercased
+    if (!s.empty())
+    {
+        s[0] = toupper(s[0]);
+
+        for (int i = 1; i < s.length(); ++i)
+            s[i] = tolower(s[i]);
+    }
+    return s;
+}
+
+void toLowerCase(string& s) {
+    //modifies s so that it is all lowercase; this is a pass by reference
+    your code here
+}
+
+int xToY(int x, int y) {
+    //uses a loop to calculate x^y and return it; assume y >= 0
+    int num = 1;
+    for (int i = 1; i <= y; i++) {
+        num = num * x;
+    }
+    return num;
+}
+
+bool isAllCaps(string s) {
+    //return true if s is all capital ASCII letters, false otherwise; take a look
+    //at asciitable.com
+    your code here
+}
+
+void toProperCaps(string& s) {
+    //modifies s so that the first character and any other characters which are
+    //after a blank are capitalized, all other letters are lowercased. This is a 
+    //pass by reference.
+    your code here
+}
