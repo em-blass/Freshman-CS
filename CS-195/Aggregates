@@ -1,0 +1,41 @@
+/* 
+	195
+	Aggregates, Group By and Math
+    Emmet Blassingame
+*/
+
+use customersAndProducts;
+
+#1 
+select avg(quantity) as 'Quantity AVG' from orderLines;
+
+#2
+select productId, count(productId) as 'Total Sales' from orderLines group by productId;
+
+#3
+select productId, avg(quantity) as 'Average Quantity Per Sale' from orderLines group by productId;
+
+#4
+select productId, price as 'Original Price', round(price*0.07, 2) as 'Sales Tax',
+round(price+(price*0.07), 2) as 'Total Cost' from products group by productId;
+
+#5
+select productId, count(quantity) as 'Total Sales' from orderLines where quantity > 2 group by productId;
+
+#6
+
+
+#7
+select productId, round(price*0.43, 2) from products; 
+
+#8 
+select sum(quantity) from orderLines; 
+
+#9
+select orderId, sum(quantity) from orderLines group by orderId; 
+
+#10
+select customerId, count(customerId) from orders group by customerId; 
+
+#11 
+select customerId, max(orderDate) from orders group by customerId;
