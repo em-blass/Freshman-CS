@@ -1,0 +1,73 @@
+/* 
+	195
+	Logical Operators Assignment
+    Emmet Blassingame
+*/
+
+use customersAndProducts;
+
+#1
+select * from orders where orderDate > 2006-02-05;
+
+#2
+select lname as 'W People' from customerContacts where lname like 'W%';
+
+#3
+select * from products where weight between 2 and 5;
+
+#4
+select productName from products where weight >= 2 and weight < 5;
+
+#5
+select orderId from orders where orderDate between 2006-01-26 and 2006-02-02;
+
+#6
+select orderId from orders where orderDate >= 2006-01-26 and orderDate <= 2006-02-02;
+
+#7
+select orderId as 'OUTSIDE' from orders where orderDate not between 2006-01-26 and 2006-02-02;
+
+#8
+select orderId from orders where orderDate < 2006-01-26 or orderDate > 2006-02-02;
+
+#9
+select orderId from orders where orderDate > 2006-01-26 and orderDate < 2006-02-02;
+
+#10
+select * from orderLines where quantity = 4 or quantity >= 12 and quantity <= 16;
+
+#11
+select * from orderLines where productId not in ('MINI', 'MAXI');
+
+#12
+select quantity as 'Big 3' from orderLines
+order by quantity desc
+limit 3;
+
+#13
+select quantity from orderLines
+order by quantity desc
+limit 1;
+
+#14
+select productName from products
+order by price asc
+limit 1;
+
+#15
+select productName as 'cheap' from products where price < 10;
+
+#16
+select * from customerContacts where lname = 'Roosevelt' xor fname = 'Franklin';
+
+#17
+select * from customerContacts where fname != 'Franklin' and lname = 'Roosevelt';
+
+#18
+select email as 'MMMsss' from customerContacts where customerId in ('MXLDR', 'MSCRUS');
+
+#19
+select * from orders where customerId = 'MXLDR' and orderDate between 2006-01-01 and 2006-01-31;
+
+#20
+select * from orders where customerId = 'MXLDR' and orderDate not between 2006-01-01 and 2006-01-31;
