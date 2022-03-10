@@ -1,0 +1,53 @@
+/*
+	191
+	String Handling
+	main1.cpp
+	Emmet Blassingame
+*/
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	const int size = 80;
+	char sentence[size];
+
+	cout << "Enter a Two Part Name: ";
+	cin.getline(sentence, size);
+
+	sentence[0] = toupper(sentence[0]);
+
+	for (int i = 1; i < size; i++)
+	{
+		if (sentence[i - 1] == ' ')
+			sentence[i] = toupper(sentence[i]);
+		else
+			sentence[i] = tolower(sentence[i]);
+	}
+	cout << "Expected: " << endl;
+	cout << "properly capitalized two part name" << endl;
+	cout << "Actual: " << endl;
+	cout << sentence << endl;
+	cout << "                          " << endl;
+
+
+	cout << "Enter a Three Part Name: ";
+	cin.getline(sentence, size);
+
+	sentence[0] = toupper(sentence[0]);
+
+	for (int i = 1; i < size; i++)
+	{
+		if (sentence[i - 1] == ' ')
+			sentence[i] = toupper(sentence[i]);
+		else
+			sentence[i] = tolower(sentence[i]);
+	}
+	cout << "Expected: " << endl;
+	cout << "properly capitalized three part name" << endl;
+	cout << "Actual: " << endl;
+	cout << sentence << endl;
+
+	return 0;
+}
