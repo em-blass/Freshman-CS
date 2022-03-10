@@ -1,0 +1,31 @@
+/* 
+	195
+	Contact Info - 1 to N Joins Assignment
+    Emmet Blassingame
+*/
+
+use contactInfo;
+
+#1
+select friendName, email
+from friends join emails
+on friends.friendId = emails.friendId
+where friendName = 'Mike Lopez'; #1 email displayed
+
+#2
+select friendName, phone
+from friends join phones
+on friends.friendId = phones.friendId
+where friendName = 'Mike Lopez'; #1 phone number displayed
+
+#3
+select friendName as "Name", email as "Email"
+from friends join emails
+on emails.friendId = friends.friendId
+order by friendName;
+
+#4
+select friendName as "Name", phone as "Phone Number"
+from phones join friends
+on phones.friendId = friends.friendId
+order by friendName;
