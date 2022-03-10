@@ -1,0 +1,54 @@
+use customersandProducts;
+
+/*Show all of the information from customerContacts for MXLDR, 
+in descending alphabetical order by last name. If there is a last name tie, sort by first name, again in descending alphabetic order.*/
+
+select * from customerContacts 
+where customerId in ('MXLDR') order by lname asc, fname asc;
+
+/*Show how many orderLines we have with 4 < quantity < 12.*/
+
+select * from orderLines
+where 4 < quantity and quantity < 12;
+
+/*List the orderDates without repetitions, in ascending order.*/
+
+select distinct orderDate from orders order by orderDate asc;
+
+/* List the total number of items ordered for each order.*/
+
+select distinct orderId, sum(quantity) from orderLines
+group by orderId;
+
+select * from orderLines;
+
+/*List the dates of the last two orders.*/
+
+select orderDate from orders;
+order by orderDate desc
+limit 2;
+
+/*List the lineId and quantity for all orderLines that had quantities out of the range [10, 12]. Use BETWEEN.*/
+
+select lineId, quantity from orderLines
+where quantity between 10 and 12;
+
+/* List the customerName and matching emails for all of the customers. */
+
+select distinct customerName, email from customers
+join customerContacts
+where customerContacts.customerId = customers.customerId;
+
+
+select * from customers;
+select * from customerContacts;
+
+/*Show the total value (not total #) of MINIs ordered.
+Round the answer to 2 digits of precision. */
+
+select products.productId, round(sum(quantity*price), 2) as 'Total Value' from products
+join orderLines
+where products.productId = orderLines.productId
+and products.productId in ('MINI');
+
+select * from products;
