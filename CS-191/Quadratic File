@@ -1,0 +1,63 @@
+/*
+    191
+    Quadratic File Assignment
+    main.cpp
+    Emmet Blassingame
+*/
+
+#include <iostream>
+#include <fstream>
+#include <cmath>
+using namespace std;
+
+void greeting() {
+    ifstream file("data.txt");
+    if (file.good())
+    {
+        cout << "Welcome! Data File Found. Calculating..." << endl;
+    }
+    else
+    {
+        cout << "Could not load the file!" << endl;
+    }
+}
+
+void readFile(double& a, double& b, double& c, ifstream& file) {
+    file >> a >> b >> c;
+}
+
+double disc(double a, double b, double c) {
+    double r = b * b - 4 * a * c;
+    return r;
+}
+
+double calcRoot1(double a, double b, double c) {
+    double var1 = (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
+    return var1;
+}
+
+double calcRoot2(double a, double b, double c) {
+    double var2 = (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
+    return var2;
+}
+
+int main() {
+    greeting();
+
+    ifstream file("data.txt");
+    double a, b, c;
+    double r1, r2;
+
+    while (!file.eof()) {
+        readFile(a, b, c, file);
+        if (disc(a, b, c) >= 0) {
+            r1 = calcRoot1(a, b, c);
+            r2 = calcRoot2(a, b, c);
+            cout << "The roots are: " << r1 << " and " << r2 << endl;
+        }
+        else {
+            cout << "No Real Roots!" << endl;
+        } //if
+    } //while
+    file.close();
+} //main
