@@ -1,0 +1,76 @@
+/* 
+	195
+	customerAndProducts - N to M Joins Assignment
+    Emmet Blassingame
+*/
+
+use customersandproducts;
+
+#1. Show all of the customerId, orderDate, productNames, quantities and extended prices for order 3.
+select customerContacts.customerId, orderDate, productName, quantity, price
+from customerContacts join orders join products join orderLines
+where customerContacts.customerId = orders.customerId and orders.orderId = orderLines.orderId
+and orders.orderId = 3;
+
+#2. Show the total sales for order 3.
+select sum(quantity), orders.orderId 
+from orders join orderLines
+where orders.orderId = orderLines.orderId and orders.orderId = 3; 
+
+#3. Show all of the customerNames, orderIds,  and quantities (meaning how many items were ordered in total for the 
+#order) for each order, in order by orderDate.
+select customerContacts.customerId, orders.orderId, quantity
+from customerContacts join orders join orderLines
+where customerContacts.customerId = orders.customerId
+order by orderDate; 
+
+#4. Show the totals of each order.
+
+
+#5. Show, without repetition, the name of all products sold to MXLDR.
+select distinct productId, customerId
+from orders join orderLines
+where orders.orderId = orderLines.orderId and customerId = 'MXLDR'; 
+
+#6. Show complete order information for any order places by MSCRUS.
+select * from orders join orderLines
+where orders.orderId = orderLines.orderId and customerId = 'MSCRUS'; 
+
+#7. Show complete order information for any order placed by Music R Us.
+select * from orders join orderLines join customers
+where orders.orderId = orderLines.orderId and orders.customerId = customers.customerId
+and customerName = 'Music R Us';
+
+#8. Show the emails for anyone that ordered a MINI, without repetitions.
+select distinct email
+from customerContacts join orderLines join orders
+where orders.orderId = orderLines.orderId and customerContacts.customerId = orders.customerId
+and productId = 'MINI'; 
+
+#9. Show the company name, without repetition, for anyone that ordered a MINI.
+select distinct customerName
+from customers join orders join orderLines
+where orders.orderId = orderLines.orderId and customers.customerId = orders.customerId
+and productId = 'MINI';
+
+#10. What (by productId) was ordered on 1/23/2006? Include the customerId also.
+select productId, customers.customerId
+from customers join orders join orderLines
+where customers.customerId = orders.customerId and orders.orderId = orderLines.orderId
+and orderDate = 2006-01-23;
+
+#11. Whats the total value sold for each product?
+select products.productId, round(sum(quantity*price), 2) as "total value"
+from orders join orderLines join products
+where orders.orderId = orderLines.orderId and orderLines.productId = products.productId
+group by products.productId; 
+
+#12. Display, without repetition, the customerId and email addresses for any company that placed an order  on or after 
+#Feb. 2, 2006.
+select distinct customerContacts.customerId, email
+from customerContacts join orders join orderLines
+where customerContacts.customerId = orders.customerId and orders.orderId = orderLines.orderId
+and orderDate >= 2006-02-02;
+
+#13. Create your own N to M query. Express it in English then solve it in SQL. It must be more than a tiny modification of 
+#the tasks above.
