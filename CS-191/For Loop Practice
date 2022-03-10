@@ -1,0 +1,60 @@
+/*
+    191
+    For Loop Practice
+    main3-2.cpp
+    Emmet Blassingame
+*/
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int m1;
+    int n1;
+    int count;
+    float sum = 0;
+
+    cout << "generating numbers from m to n" << endl;
+    cout << "enter m and n:";
+    cin >> m1 >> n1;
+    cout << "expected: integers from " << m1 << " to " << n1 << endl;
+    count = n1 - m1 + 1;
+    cout << "actual: ";
+
+    for (int i = m1; i < (n1 + 1); ++i) {
+        cout << i << " ";
+        sum += i;
+    }
+
+    cout << endl;
+    cout << setprecision(2) << fixed << "sum: " << double(sum) << " " << "average: " << double(sum / count) << endl;
+    cout << endl;
+
+    int m2, n2;
+    int a, b;
+
+    cout << "generating numbers from m to n" << endl;
+    cout << "enter m and n:";
+
+    cin >> m2 >> n2;
+
+    if (m2 > n2) {
+        a = n2;
+        b = m2;
+    }
+
+    else {
+        a = m2;
+        b = n2;
+    }
+
+    cout << "expected: odd integers from " << a << " to " << b << endl;
+    cout << "actual: ";
+
+    for (int i = a; i < (b + 1); ++i) {
+        if (i % 2 != 0) {
+            cout << i << " ";
+        }
+    }
+}
