@@ -54,7 +54,7 @@ upper(right(lname, 1))) as 'Revised Name'
 from customerContacts;
 
 #7
-SELECT date_format('2011-3-7', '%W, %M %e, %Y') AS result;
+select date_format('2011-3-7', '%W, %M %e, %Y') AS result;
 select date_format('2011-3-7', '%M %D, %Y') as result;
 select date_format('2011-3-7 16:05:00', '%W %l:%i %p') as result;
 
