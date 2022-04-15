@@ -127,7 +127,7 @@ where studentId in
 			and className = 'Calc III')
 );
 
-#15)	Show all the class names that are not taught by K Fix.
+#15)	Show all the class names that are not taught by K Fix
 select className from classes
 where classId in
 	(select classId from teachersxclasses 
