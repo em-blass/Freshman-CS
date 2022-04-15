@@ -18,14 +18,20 @@ where customerId in
 #2)	Display the email address for any customer that placed an order on or after Feb. 5, 2006.
 select email from customerContacts 
 where customerId in
-	(select distinct customerId from orders 
+	(select customerId from orders 
 	where orderId in 
 		(select orderId from orderLines 
         where orderDate >= '2006-02-05')
 );
 
 #3)	Show the productId for all products sold to MXLDR, without repetition.
-
+select productId from products 
+where productId in
+	(select productId from orderLines 
+	where orderId in 
+		(select orderId from orders 
+        where customerId = 'MXLDR')
+);
 
 #4)	Show all information for all products with a greater price than the average price of the products.
 select * from products as p1
@@ -40,7 +46,7 @@ select customerName from customers
 where customerId not in
 	(select customerId
     from customerContacts);
-
+    
 #6)	Show the customerName for all customers that have not placed an order.
 select customerName from customers
 where customerId not in
@@ -54,8 +60,7 @@ where productId not in
     from orderLines);
 
 #8)	Show the orderId for any larger than average  size order, measured as # of items ordered.
-####NOT FINISHID
-select orderId from orderLines as ol1
+select orderId, quantity from orderLines as ol1
 where quantity >
 (
 select avg(quantity)
@@ -113,7 +118,6 @@ where studentId in
 );
 
 #14)	Show all the students in Calc III that are not in CS 1.
-#####NOT FINISHED
 select studentId, stuName from students
 where studentId in
 	(select studentId from studentsxclasses 
@@ -124,35 +128,68 @@ where studentId in
 );
 
 #15)	Show all the class names that are not taught by K Fix.
-select studentId, stuName from students
-where studentId in
-	(select studentId from studentsxclasses 
-	where classId in 
-		(select classId from classes 
-        where className = 'CS I' 
-			and className = 'Calc III')
+select className from classes
+where classId in
+	(select classId from teachersxclasses 
+	where teacherId in 
+		(select teacherId from teachers 
+        where not teachName = 'K Fix')
 );
 
 #16)	Show all the students that are not taught by K Fix.
-
+select stuName from students
+where studentId in
+	(select studentId from studentsxclasses 
+	where classId in 
+		(select classId from teachersxclasses 
+        where teacherId in
+        (select teacherId from teachers 
+        where not teachName = 'K Fix'))
+);
 
 #17)	Show the names of all classes with above average enrollment.
-	#skip 18 and 19 for now
-    
-    
+
+
 #18)	Show the students for all classes with above average enrollment. 
 
 
 #19)	What students are taught by both K Fix and HKeck? 
-
+select stuName from students
+where studentId in
+	(select studentId from teachersxclasses 
+	where teacherId in 
+		(select teacherId from teachers 
+        where teachName = 'K Fix'
+			and teachName = 'H Keck')
+);
 
 #20)	What students are in classes with Dan or Meghan?
-
+select stuName from students
+where studentId in
+	(select studentId from studentsxclasses
+	where classId in	
+		(select classId from classes
+		where classId in
+			(select classId from studentsxclasses
+			where studentId in
+				(select studentId from students
+				where stuName = 'Dan'
+					or stuName = 'Meghan'))));
 
 #21)	What students are not in classes with either Dan or Meghan?
 
 
 #22)	What students are in classes with both Dan and Meghan?
-
+select stuName from students
+where studentId in
+	(select studentId from studentsxclasses
+	where classId in	
+		(select classId from classes
+		where classId in
+			(select classId from studentsxclasses
+			where studentId in
+				(select studentId from students
+				where stuName = 'Dan'
+					and stuName = 'Meghan'))));
 
 
