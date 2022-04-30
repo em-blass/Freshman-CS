@@ -138,7 +138,7 @@ where stuName like '%d%'
 #took. Using another SQL statement that uses that view to show the stuName and the 
 #classNames, in order by stuName.
  
-create view stuInfo (stu, studentId, className, classId) as
+create view stuInfo (stuName, studentId, className, classId) as
 select stuName, studentId, className, classId
 from students join classes;
 
