@@ -20,6 +20,12 @@ from orderLines;
 #2) Show the orderId, total value of the order and customerName for each order with the 
 #column names as shown.
 
+select orderLines.orderId, round(sum((quantity * price)), 2) as 'Total Value', customerName
+from orderLines, products, orders, customers
+where orders.orderId = orderLines.orderId
+	and products.productId = orderLines.productId
+    and customers.customerId = orders.customerId
+group by orderLines.orderId, customers.customerId;
 
 #3) Using a subquery, display names and email contacts for any company that placed an in 
 #February.
@@ -33,6 +39,11 @@ where customerId in (
     
 #4) Show the customerName for every customer that ordered only in February.
 
+select customerName from customers join customerContacts
+on customers.customerId = customerContacts.customerId
+where customerContacts.customerId in (
+	select orders.customerId from orders
+    where orderDate between '2006-02-01' and '2006-03-01');
 
 #5) Show the customerName and emails for all companies that bought the Medium Product. 
 #Note: you must start with 'Medium Product', not 'MIDI'.
@@ -64,7 +75,12 @@ order by customerName asc;
 #size order, measured as the total value of items sold on that order.
 #StudentsTeachersAndClasses
 
-
+select distinct customerName, orderId
+from orderLines, products, customers
+where (quantity * price) > 
+	(select avg(quantity * price) 
+    from products, orderLines)
+    group by products.productId, customerId;
 
  use StudentsTeachersAndClasses;
 
